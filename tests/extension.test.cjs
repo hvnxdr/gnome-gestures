@@ -28,7 +28,7 @@ function fixture(initialEnabled = true) {
     const workspace = {enabled: true};
     const tracker = {orientation: 1, enabled: true,
         _touchpadGesture: gesture, _panGesture: touchscreen};
-    const source = readFileSync(`${__dirname}/../extension.js`, 'utf8')
+    const source = readFileSync(`${__dirname}/../build/extension.js`, 'utf8')
         .replace(/^import .*;\n/gm, '')
         .replace('export default class', 'class');
     const ExtensionClass = vm.runInNewContext(`${source}\nDisableOverviewSwipe;`, {

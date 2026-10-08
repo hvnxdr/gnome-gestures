@@ -13,8 +13,8 @@ scrolling keep their normal behavior. There is no preferences window.
 Run from this directory:
 
 ```sh
-mkdir -p dist
-gnome-extensions pack --force --out-dir dist .
+npm ci
+npm run pack
 gnome-extensions install --force dist/disable-overview-swipe@gnome-gestures.local.shell-extension.zip
 ```
 
@@ -44,6 +44,11 @@ gnome-extensions disable disable-overview-swipe@gnome-gestures.local
 
 ## Implementation
 
+The source is `extension.ts`. `npm run build` compiles it to JavaScript
+and copies metadata into `build/`. GNOME loads the generated JavaScript.
+The compiler uses GJS and GNOME Shell type declarations, plus local
+interfaces for the private gesture fields.
+
 GNOME 51 uses separate overview and workspace swipe trackers. This extension
 disables only `Main.overview._swipeTracker._touchpadGesture`, and keeps it
 disabled when Shell updates its property binding. On disable it restores
@@ -58,7 +63,8 @@ and [touchpad handler and bindings](https://github.com/GNOME/gnome-shell/blob/51
 ## Automated checks
 
 ```sh
-node --test tests/extension.test.cjs
+npm run check
+npm test
 ```
 
 The tests simulate property notifications and restoration. Physical
