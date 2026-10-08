@@ -1,0 +1,7 @@
+{
+  "uuid": "disable-overview-swipe@gnome-gestures.local",
+  "name": "Disable Overview Swipe",
+  "description": "Disable vertical touchpad overview swipes while preserving workspace switching and touchscreen gestures.",
+  "shell-version": ["51"],
+  "version": 1
+}
